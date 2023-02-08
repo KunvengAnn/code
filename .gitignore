@@ -1,32 +1,142 @@
-# Prerequisites
-*.d
+/*Xay dung mot class Matrix 
+tinh phep toan cong va nhan 2 Matrix hoac matran;
+*/
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+#include<iostream>
+using namespace std;
+class Matrix
+{
+	private:
+		int n, m; // khai bao n cot m hang
+		int A[100][100];
+	public:
+		Matrix(){};
+		Matrix(int n,int m,int A[][100])
+		{
+			this->n=n;
+			this->m=m;
+			for(int i=0; i<n; i++)
+			for(int j=0; j<m; j++)
+			{
+				this->A[i][j]=A[i][j];
+			}
+		}
+		void input()
+		{
+			cout<<"Input rows hang(n): ";cin>>n;
+			cout<<"Input columns cot(m): ";cin>>m;
+			for(int i=0; i<n;i++)
+			{
+			for(int j=0; j<m; j++)
+			{
+				cout<<"A["<<i<<"]["<<j<<"]= ";
+				cin>>this->A[i][j];
+			}
+			}
+		}
+		void output();
+		
+		Matrix sum(Matrix b)
+		{
+			Matrix c;
+			for(int i=0; i<this->n;i++){
+				for(int j=0; j<this->m; j++)
+					c.A[i][j] = this->A[i][j]+b.A[i][j];
+			}
+			return c;
+		}	
+		bool sameSize(Matrix b){
+			if(this->n == b.getN() && this->m == b.getM()) return true;
+		}
+		bool checkcanMultiply(Matrix b){
+			return this->m == b.getN() ? true:false;
+		}
+		Matrix multiply(Matrix b){
+			Matrix c;
+			for(int i=0; i<this->n ;i++)
+				for(int j=0; j<b.m; j++)
+				{
+					int tt=0;
+					for(int k=0; k<this->m; k++)
+					{
+						tt = tt + (this->A[i][k] * b.A[k][j]); // cong thuc tinh c[i][j]
+					}
+					c.A[i][j] = tt;
+				}
+		}
+		
+		void setN(int n)
+		{
+			this->n =n ;
+		}
+		void setM(int m)
+		{
+			this->m = m;
+		}
+		void setElementMatrix(int value, int i , int j)
+		{
+			this->A[i][j] = value;
+		}
+		int getN(){
+			return this->n;
+		}
+		int getM(){
+			return this->m;
+		}
+		int getElementMatrix(int i, int j){
+			return this->A[i][j];
+		}
+};
+	void Matrix::output()
+	{
+		for(int i=0; i<n; i++)
+		{
+			for(int j=0; j<m; j++)
+			{
+				cout<<this->A[i][j]<<" ";
+			}
+			cout<<"\n";
+		}
+	}
+int main()
+{
+	Matrix A;
+	Matrix B;
+	
+	cout<<"------------Please Input value rows and columns of Matix A-----------\n ";
+	A.input();
+	cout<<"------------Please Input value rows and columns of Matix B-----------\n ";
+	B.input();
+	cout<<"------------Output resule of Matrix A----------------------\n";
+	A.output();
+	cout<<"------------Output resule of Matrix B----------------------\n";
+	B.output();
+	
+	cout<<"------------Sum two Matrix----------------------\n";
+	Matrix tong;
+	if(A.sameSize(B) == true)
+	{
+		tong = A.sum(B);
+		tong.output();
+	}
+	else
+	{
+		cout<<"\n=> khong the cong 2 matrix khong cung kich thuoc";	
+	}
+	cout<<"\n------------Multiply two Matrix--------------\n";
+	Matrix tich;
+	if(A.sameSize(B) == true)
+	{
+		tich = A.multiply(B);
+		tich.output();
+	}
+	else
+	{
+		cout<<"\n=> khong the tich 2 ma tran khong cung kich thuoc";
+	}
+	
+	return 0;
+}	
+	
+	
+	
