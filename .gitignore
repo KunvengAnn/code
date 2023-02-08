@@ -4,11 +4,13 @@ tinh phep toan cong va nhan 2 Matrix hoac matran;
 
 #include<iostream>
 using namespace std;
+//Khái báo lop Matrix  
 class Matrix
 {
 	private:
 		int n, m; // khai bao n cot m hang
-		int A[100][100];
+		int A[100][100];//Khai báo mang A  bieu dien ma tran gom toi da 100 dong và 100 cot
+		//2 constructors with parameters and no parameters
 	public:
 		Matrix(){};
 		Matrix(int n,int m,int A[][100])
@@ -45,11 +47,19 @@ class Matrix
 			}
 			return c;
 		}	
+		//Phuong thuc kiem tra ma tran hien tai có bang ma tran truyen vào
+		//Method to check whether the current matrix is equal to the input matrix
 		bool sameSize(Matrix b){
 			if(this->n == b.getN() && this->m == b.getM()) return true;
+			return false;
 		}
+//This method checks if the number of columns of this matrix is equal to the number of rows of the input matrix
+//Phuong thuc này kiem tra xem so cot ma tran này có bang so hàng ma tran truyen vào
 		bool checkcanMultiply(Matrix b){
 			return this->m == b.getN() ? true:false;
+			//Lenh if viet gon, tuong duong neu m hien tai bang n ma tran truyen vào tra ve true và kg bang thì tr ve false
+    }
+
 		}
 		Matrix multiply(Matrix b){
 			Matrix c;
@@ -64,7 +74,8 @@ class Matrix
 					c.A[i][j] = tt;
 				}
 		}
-		
+//Get and set methods => To get and change the value of the property
+//Các phuong thuc get và set => Ðe lay và thay doi giá tri cua thuoc tính
 		void setN(int n)
 		{
 			this->n =n ;
