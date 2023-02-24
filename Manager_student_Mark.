@@ -1,3 +1,18 @@
+Xây dựng chương trình quản lý sinh viên gồm các chức năng:
+1.Quản lý SV:
+-các thông tin sv:mã sv,họ tên,ngày sinh giới tính,quê quán,diện chính sách.
+-các chức năng:hiển thị danh sách sv,thêm mới ,cập nhật,xóa,tìm kiếm theo mã sv, tên, ngày sinh.....
+2.Quản lý điểm:
+-các thông tin:mã sv,tên sv,điểm tb,điểm rèn luyện ,điểm cộng.
+-chức năng:hiển thị danh sách điểm theo thứ tự giảm dần của điểm tb,thêm,sửa, xóa,tìm kiếm theo dtb.
+3.Quản lý học bổng:
+-các thông tin:mã sv,tên sv,ngày sinh,điểm tb,điểm rèn luyện,diện chính sách,học bổng, tiền trợ cấp.
+-các chức năng:
++thực hiện tính học bổng:nếu điểm tb+điểm cộng >9 và điểm rèn luyện >9 thì học bổng 300000.nếu điểm trung bình học tập +điểm cộng >9 va điểm rèn luyện <9 thì học bổng 270000.còn lại học bổng =0.
++thực hiện tính trợ cấp:con thương binh 200000,hộ nghèo 180000.
++hiện thị các thông tin này ra màn hình.
+
+
 #include<fstream.h>
 #include<iostream.h>
 #include<conio.h>
